@@ -35,7 +35,8 @@
 
 <h1>Edit Employee</h1>
 
-<form th:action="@{/employees/update}" th:object="${employee}" method="post">
+<form th:action="@{/employees/update}" th:object="${employee}" method="post" enctype="multipart/form-data">
+
   <input type="hidden" th:field="*{empno}" />
 
   <label for="ename">Name:</label>
@@ -55,9 +56,18 @@
 
   <label for="comm">Commission:</label>
   <input type="number" th:field="*{comm}" id="comm" />
+  <label for="img">Image:</label>
+  <input type="file" id="img" name="img" accept="image/*" required>
 
-  <label for="deptno">Department Number:</label>
-  <input type="number" th:field="*{deptno}" id="deptno" required />
+
+  <label for="department">Department:</label>
+  <select id="department" name="department.deptno" required>
+    <option th:each="dept : ${departments}"
+            th:value="${dept.deptno}"
+            th:text="${dept.dname}"></option>
+  </select>
+
+
 
   <button type="submit">Update Employee</button>
 </form>

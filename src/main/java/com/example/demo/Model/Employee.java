@@ -1,12 +1,8 @@
 package com.example.demo.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -16,15 +12,18 @@ public class Employee {
     private String ename;
     private String job;
     private Long mgr;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date hiredate;
     private Double sal;
     private Double comm;
-    private Long deptno;
 
+
+    @ManyToOne
+    @JoinColumn(name = "deptno", nullable = false) // Using deptno as the foreign key
+    private Department department;
 
     private String imgName;
-
 
     public Long getEmpno() { return empno; }
     public void setEmpno(Long empno) { this.empno = empno; }
@@ -47,8 +46,13 @@ public class Employee {
     public Double getComm() { return comm; }
     public void setComm(Double comm) { this.comm = comm; }
 
-    public Long getDeptno() { return deptno; }
-    public void setDeptno(Long deptno) { this.deptno = deptno; }
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public String getImgName() {
         return imgName;

@@ -3,7 +3,7 @@
 <head>
     <title>Employee Details</title>
     <style>
-        /* Basit stil */
+
         body {
             font-family: Arial, sans-serif;
         }
@@ -49,6 +49,20 @@
         a.edit-employee:hover, a.delete-employee:hover {
             text-decoration: underline;
         }
+
+        .home-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .home-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -56,6 +70,7 @@
 <h1>Employee Details</h1>
 
 <a class="add-employee" th:href="@{/employees/create}">Add Employee</a>
+<a class="home-button" th:href="@{/}">Back to Home</a>
 
 <table>
     <thead>
@@ -67,7 +82,7 @@
         <th>Hire Date</th>
         <th>Salary</th>
         <th>Commission</th>
-        <th>Department Number</th>
+        <th>Department Name</th>
         <th>Image</th>
         <th>Actions</th>
     </tr>
@@ -82,20 +97,14 @@
         <td th:text="${employee.hiredate != null ? #dates.format(employee.hiredate, 'yyyy-MM-dd') : ''}"></td>
         <td th:text="${employee.sal}">Salary</td>
         <td th:text="${employee.comm}">Commission</td>
-        <td th:text="${employee.deptno}">Department Number</td>
+        <td th:text="${employee.department.getDname()}">Department Name</td>
         <td>
             <img th:src="@{'http://localhost:9870/webhdfs/v1/images/' + ${employee.imgName} + '?op=OPEN'}" alt="Employee Image">
-
-
-
-
         </td>
-
         <td>
             <a th:href="@{|/employees/edit/${employee.empno}|}">Edit</a>
             <a th:href="@{|/employees/delete/${employee.empno}|}" onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
         </td>
-
     </tr>
     </tbody>
 </table>

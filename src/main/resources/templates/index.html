@@ -3,10 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <title>Ana Sayfa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    a {
+      display: inline-block;
+      margin: 10px 20px;
+      padding: 15px 25px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-<h1>Welcome!</h1>
-<a th:href="@{/employees}">Employees</a>
-<a th:href="@{/departments}">Departments</a>
+<div class="container">
+  <h1>Welcome!</h1>
+  <a th:href="@{/employees}">Employees</a>
+  <a th:href="@{/departments}">Departments</a>
+</div>
 </body>
 </html>

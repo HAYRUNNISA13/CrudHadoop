@@ -65,16 +65,21 @@
   <label for="hiredate">Hire Date:</label>
   <input type="date" id="hiredate" name="hiredate" required>
 
-
-
   <label for="sal">Salary:</label>
   <input type="number" id="sal" name="sal" required>
 
   <label for="comm">Commission:</label>
   <input type="number" id="comm" name="comm">
 
-  <label for="deptno">Department Number:</label>
-  <input type="number" id="deptno" name="deptno" required>
+
+
+  <label for="department">Department:</label>
+  <select id="department" name="department.deptno" required>
+    <option th:each="dept : ${departments}"
+            th:value="${dept.deptno}"
+            th:text="${dept.dname}"></option>
+  </select>
+
 
   <label for="img">Image:</label>
   <input type="file" id="img" name="img" accept="image/*" required>
