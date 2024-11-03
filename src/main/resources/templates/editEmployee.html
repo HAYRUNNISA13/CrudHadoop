@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Edit Employee</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: #333;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Edit Employee</h1>
+
+<form th:action="@{/employees/update}" th:object="${employee}" method="post">
+  <input type="hidden" th:field="*{empno}" />
+
+  <label for="ename">Name:</label>
+  <input type="text" th:field="*{ename}" id="ename" required />
+
+  <label for="job">Job:</label>
+  <input type="text" th:field="*{job}" id="job" required />
+
+  <label for="mgr">Manager:</label>
+  <input type="number" th:field="*{mgr}" id="mgr" required />
+
+  <label for="hiredate">Hire Date:</label>
+  <input type="date" th:field="*{hiredate}" id="hiredate" required />
+
+  <label for="sal">Salary:</label>
+  <input type="number" th:field="*{sal}" id="sal" required />
+
+  <label for="comm">Commission:</label>
+  <input type="number" th:field="*{comm}" id="comm" />
+
+  <label for="deptno">Department Number:</label>
+  <input type="number" th:field="*{deptno}" id="deptno" required />
+
+  <button type="submit">Update Employee</button>
+</form>
+
+</body>
+</html>
