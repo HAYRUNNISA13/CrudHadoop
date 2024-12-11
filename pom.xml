@@ -2,72 +2,120 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.0-SNAPSHOT</version>
+		<version>2.7.12</version>
 		<relativePath/>
 	</parent>
+
 	<groupId>org.example</groupId>
 	<artifactId>demo1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo1</name>
 	<description>demo1</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
-		<!-- Spring Boot Dependencies -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
+		<!-- Spring Boot Starter Web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Lombok Dependency -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Spring Boot DevTools Dependency (Development only) -->
+		<!-- Spring Boot Starter Data JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>2.8.0</version> <!-- Sürümü Spring Boot versiyonunuza uygun şekilde güncelleyin -->
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.28</version>
-
-			<scope>runtime</scope>
+			<version>8.0.28</version>  <!-- En son sürüm veya uyumlu bir sürüm kullanın -->
 		</dependency>
 
 
+
+		<!-- Kafka Clients -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
+		<!-- Scala Library -->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.12.18</version>
+		</dependency>
+
+		<!-- Spark Core -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_2.12</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+
+		<!-- Spark Streaming -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-streaming_2.12</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+
+		<!-- Spark Streaming Kafka Integration -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-streaming-kafka-0-10_2.12</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+
+		<!-- Spark SQL -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.12</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+
+		<!-- Cassandra Spark Connector -->
+		<dependency>
+			<groupId>com.datastax.spark</groupId>
+			<artifactId>spark-cassandra-connector_2.12</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
+		<!-- Cassandra Driver -->
+		<dependency>
+			<groupId>com.datastax.oss</groupId>
+			<artifactId>java-driver-core</artifactId>
+			<version>4.14.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+
+		<!-- Joda Time -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.10.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 
 		<!-- Spring Boot Test Dependency -->
 		<dependency>
@@ -76,14 +124,14 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- JUnit Platform Launcher Dependency (Test runtime only) -->
+		<!-- JUnit Platform Launcher Dependency -->
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-launcher</artifactId>
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Hadoop Dependencies -->
+		<!-- Apache Hadoop Dependencies -->
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-common</artifactId>
@@ -94,31 +142,24 @@
 			<artifactId>hadoop-hdfs</artifactId>
 			<version>3.3.6</version>
 		</dependency>
+
+		<!-- Spring Boot DevTools Dependency (Optional, for development only) -->
 		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-mapreduce-client-core</artifactId>
-			<version>3.3.6</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-client</artifactId>
-			<version>3.3.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-yarn-client</artifactId>
-			<version>3.3.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-yarn-api</artifactId>
-			<version>3.3.6</version>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 	<dependencyManagement>
 		<dependencies>
-
+			<!-- Dependency management for version control -->
 		</dependencies>
 	</dependencyManagement>
 
@@ -127,15 +168,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>3.3.5</version> <!-- Add this line -->
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
+				<version>2.7.12</version>
 			</plugin>
 		</plugins>
 	</build>
@@ -153,16 +186,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
 	</repositories>
-
 
 	<pluginRepositories>
 		<pluginRepository>
@@ -172,14 +196,6 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
 		</pluginRepository>
 	</pluginRepositories>
 </project>
